@@ -5,76 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kal Ho Naa Ho</title>
 
-    <!-- Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
         :root {
-            --primary-romance: #0b1c2d;
-            --accent-gold: #D4AF37;
+          --primary-romance: #0b1c2d;
+          --accent-gold: #D4AF37;
         }
 
         html, body {
-            height: 100%;
-            margin: 0;
-            font-family: Georgia, serif;
-            background-color: var(--primary-romance);
-            overflow: hidden;
-            color: white;
+          height: 100%;
+          margin: 0;
+          font-family: Georgia, serif;
+          background-color: var(--primary-romance);
+          overflow: hidden;
+          color: white;
         }
 
         .bg-image {
-            background-image:
-                linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
-                url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee');
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+          background-image:
+            linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+            url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee');
+          height: 100%;
+          background-size: cover;
+          background-position: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .content {
-            background: rgba(0,0,0,0.55);
-            backdrop-filter: blur(12px);
-            padding: 40px;
-            border-radius: 18px;
-            max-width: 750px;
-            border: 1px solid var(--accent-gold);
-            text-align: center;
+          background: rgba(0,0,0,0.55);
+          backdrop-filter: blur(12px);
+          padding: 40px;
+          border-radius: 18px;
+          max-width: 780px;
+          border: 1px solid var(--accent-gold);
+          text-align: center;
         }
 
         .quote {
-            font-size: 24px;
-            line-height: 1.7;
-            min-height: 260px;
+          font-size: 24px;
+          line-height: 1.7;
+          min-height: 260px;
         }
 
         .cursor {
-            width: 3px;
-            height: 25px;
-            background: var(--accent-gold);
-            display: inline-block;
-            animation: blink 0.7s infinite;
+          width: 3px;
+          height: 25px;
+          background: var(--accent-gold);
+          display: inline-block;
+          animation: blink 0.7s infinite;
         }
 
         @keyframes blink {
-            50% { opacity: 0; }
+          50% { opacity: 0; }
         }
 
         #endLine {
-            margin-top: 30px;
-            display: none;
-            font-size: 28px;
-            color: var(--accent-gold);
+          margin-top: 30px;
+          display: none;
+          font-size: 28px;
+          color: var(--accent-gold);
         }
     </style>
 </head>
 
 <body>
 
-<audio id="bgMusic" loop>
+<audio id="bgMusic" loop muted>
     <source src="kal_ho_na_ho.mp3" type="audio/mpeg">
 </audio>
 
@@ -82,10 +81,7 @@
     <div class="content">
         <div class="quote" id="typewriter"></div>
         <span class="cursor" id="cursor"></span>
-
-        <div id="endLine">
-            ❤️ Always & Forever ❤️
-        </div>
+        <div id="endLine">❤️ Always & Forever ❤️</div>
     </div>
 </div>
 
@@ -117,33 +113,27 @@
     let index = 0;
 
     window.onload = () => {
-        const music = document.getElementById("bgMusic");
-        music.play().catch(()=>{});
-        typeEffect();
+      const music = document.getElementById("bgMusic");
+      music.muted = false;
+      music.play().catch(()=>{});
+      typeEffect();
     };
 
     function typeEffect() {
-        if (index < text.length) {
-            document.getElementById("typewriter").innerHTML +=
-                text.charAt(index) === "\n" ? "<br><br>" : text.charAt(index);
-            index++;
-            setTimeout(typeEffect, 55);
-        } else {
-            document.getElementById("cursor").style.display = "none";
-            showEnd();
-        }
+      if (index < text.length) {
+        document.getElementById("typewriter").innerHTML +=
+          text.charAt(index) === "\n" ? "<br><br>" : text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 55);
+      } else {
+        document.getElementById("cursor").style.display = "none";
+        showEnd();
+      }
     }
 
     function showEnd() {
-        const end = document.getElementById("endLine");
-        end.style.display = "block";
-
-        confetti({
-            particleCount: 200,
-            spread: 90,
-            origin: { y: 0.6 },
-            colors: ['#ff4d6d', '#ffd166', '#ffffff']
-        });
+      document.getElementById("endLine").style.display = "block";
+      confetti({ particleCount: 200, spread: 90, origin: { y: 0.6 } });
     }
 </script>
 
