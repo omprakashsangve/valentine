@@ -1,32 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Be My Valentine</title>
-    <link rel="stylesheet" href="css/valentine.css" />
-  </head>
-  <body>
-    <div id="valentineQuestion"><b>Sneha, Will you be my valentine? 💖</b></div>
-    <button class="answerButton" onclick="location.href='thankyou.html'">
-      Yes
-    </button>
-    <button class="answerButton" id="noButton">I no no wanna o(╥﹏╥)o</button>
-    <br />
-    <img src="proposal.gif" alt="cat asking question" class="responsive" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SRK Valentine 💖</title>
 
-    <script>
-      document
-        .getElementById("noButton")
-        .addEventListener("click", function () {
-          var yesButton = document.querySelector(
-            'button[onclick*="thankyou.html"]'
-          );
-          var currentFontSize = parseInt(
-            window.getComputedStyle(yesButton).fontSize
-          );
-          yesButton.style.fontSize = currentFontSize + 10 + "px"; // Increase font size by 5px
-        });
-    </script>
-  </body>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+    }
+
+    #valentineQuestion {
+      margin-top: 40px;
+      font-size: 28px;
+      padding: 20px;
+      line-height: 1.5;
+    }
+
+    .answerButton {
+      margin: 15px;
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .yes {
+      background-color: #ff4b5c;
+      color: white;
+    }
+
+    .no {
+      background-color: #444;
+      color: white;
+    }
+
+    img.responsive {
+      margin-top: 25px;
+      width: 80%;
+      max-width: 350px;
+      border-radius: 20px;
+    }
+
+    .heart {
+      position: fixed;
+      color: red;
+      font-size: 20px;
+      animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="valentineQuestion">
+  Sneha… 💫<br>
+  Tum meri zindagi ki wo kahani ho<br>
+  jise main har roz jeena chahta hoon ❤️<br><br>
+
+  Ek sawaal hai…<br>
+  <b>Will you be my Valentine? 💖</b>
+</div>
+
+<button class="answerButton yes" onclick="goYes()">
+  Haan meri jaan ❤️
+</button>
+
+<button class="answerButton no" id="noButton">
+  Nahi 😅
+</button>
+
+<br>
+
+<img src="srklove.gif" alt="SRK Love" class="responsive" id="mainImg"/>
+
+<!-- Optional Music -->
+<!-- Upload an mp3 and rename below -->
+<!-- <audio id="bgMusic" src="romantic.mp3"></audio> -->
+
+<script>
+  function goYes() {
+    createHearts();
+    setTimeout(() => {
+      window.location.href = "thankyou.html";
+    }, 1200);
+  }
+
+  document.getElementById("noButton").addEventListener("click", function () {
+    var yesBtn = document.querySelector(".yes");
+    var size = parseInt(window.getComputedStyle(yesBtn).fontSize);
+    yesBtn.style.fontSize = size + 8 + "px";
+  });
+
+  function createHearts() {
+    for (let i = 0; i < 25; i++) {
+      let heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+  }
+</script>
+
+</body>
 </html>
