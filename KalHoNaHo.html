@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kal Ho Naa Ho</title>
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        :root {
+            --primary-romance: #0b1c2d;
+            --accent-gold: #D4AF37;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: Georgia, serif;
+            background-color: var(--primary-romance);
+            overflow: hidden;
+            color: white;
+        }
+
+        .bg-image {
+            background-image:
+                linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+                url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee');
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content {
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: 18px;
+            max-width: 750px;
+            border: 1px solid var(--accent-gold);
+            text-align: center;
+        }
+
+        .quote {
+            font-size: 24px;
+            line-height: 1.7;
+            min-height: 260px;
+        }
+
+        .cursor {
+            width: 3px;
+            height: 25px;
+            background: var(--accent-gold);
+            display: inline-block;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        #endLine {
+            margin-top: 30px;
+            display: none;
+            font-size: 28px;
+            color: var(--accent-gold);
+        }
+    </style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+    <source src="kal_ho_na_ho.mp3" type="audio/mpeg">
+</audio>
+
+<div class="bg-image">
+    <div class="content">
+        <div class="quote" id="typewriter"></div>
+        <span class="cursor" id="cursor"></span>
+
+        <div id="endLine">
+            ❤️ Always & Forever ❤️
+        </div>
+    </div>
+</div>
+
+<script>
+    const text = `स्नेहा काश मैं तुम्हें बता पाता, मैं तुम्हें कितना चाहता हूँ।
+    आई लव यू, मैं तुम्हें बहुत बहुत प्यार करता हूँ नैना।
+
+    मैं आंखें बंद करता हूँ तो तुम्हें देखता हूँ,
+    आंखें खोलता हूँ तो तुम्हें देखना चाहता हूँ।
+
+    तुम पास नहीं होती तो तुम्हें चारों तरफ महसूस करता हूँ।
+    हर पल हर घड़ी हर वक्त मेरे नैना मेरे नैना को ढूंढते हैं।
+
+    इसे प्यार कहो, पागलपन या मेरे दिल की धड़कन।
+    मेरे लिए एक ही बात है।
+
+    प्यार तो बहुत लोग करते हैं,
+    लेकिन मेरे जैसा प्यार कोई नहीं कर सकता,
+    क्योंकि किसी के पास तुम जैसा नहीं है।
+
+    मैं तुम्हें भूल नहीं सकता नैना।
+    मैं तुम्हें भूलना ही नहीं चाहता।
+
+    तुम मेरी हो,
+    मैं तुम्हें जिंदगी भर प्यार करूंगा।
+    मरते दम तक प्यार करूंगा…
+    और उसके बाद भी।`;
+
+    let index = 0;
+
+    window.onload = () => {
+        const music = document.getElementById("bgMusic");
+        music.play().catch(()=>{});
+        typeEffect();
+    };
+
+    function typeEffect() {
+        if (index < text.length) {
+            document.getElementById("typewriter").innerHTML +=
+                text.charAt(index) === "\n" ? "<br><br>" : text.charAt(index);
+            index++;
+            setTimeout(typeEffect, 55);
+        } else {
+            document.getElementById("cursor").style.display = "none";
+            showEnd();
+        }
+    }
+
+    function showEnd() {
+        const end = document.getElementById("endLine");
+        end.style.display = "block";
+
+        confetti({
+            particleCount: 200,
+            spread: 90,
+            origin: { y: 0.6 },
+            colors: ['#ff4d6d', '#ffd166', '#ffffff']
+        });
+    }
+</script>
+
+</body>
+</html>
