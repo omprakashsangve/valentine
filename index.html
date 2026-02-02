@@ -99,10 +99,13 @@
 <script>
   function goYes() {
     createHearts();
+    // This 'unlocks' audio permission for the next page
+    localStorage.setItem('valPermission', 'true');
+
     setTimeout(() => {
       window.location.href = "KuchKuchHotaHai.html";
     }, 1200);
-  }
+}
 
   document.getElementById("noButton").addEventListener("click", function () {
     var yesBtn = document.querySelector(".yes");
@@ -124,6 +127,7 @@
       }, 5000);
     }
   }
+
 </script>
 
 </body>
