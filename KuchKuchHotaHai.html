@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message For You</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Georgia', serif;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* SRK Background Image */
+        .bg-image {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                              url('https://wallpapers.com');
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .content {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 80%;
+            border: 2px solid #ff4d4d;
+            box-shadow: 0 0 20px rgba(255, 77, 77, 0.5);
+        }
+
+        .quote {
+            font-size: 24px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-style: italic;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .movie-title {
+            display: block;
+            margin-top: 10px;
+            font-size: 18px;
+            color: #ff85a2;
+        }
+
+        .music-control {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #ff4d4d;
+            border: none;
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .music-control:hover {
+            background: #e60000;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-image">
+    <div class="content">
+        <p class="quote">
+            "प्यार दोस्ती है… अगर वह मेरी सबसे अच्छी दोस्त नहीं बन सकती, <br>
+            तो मैं उससे कभी प्यार ही नहीं कर सकता क्योंकि दोस्ती के बिना <br>
+            तो प्यार होता ही नहीं… सरल बात है, प्यार दोस्ती है!"
+            <span class="movie-title">- Kuch Kuch Hota Hai</span>
+        </p>
+
+        <!-- Music Section -->
+        <button class="music-control" onclick="toggleMusic()">🎵 Play Our Song</button>
+        <audio id="bgMusic" loop>
+            <source src="https://www.soundhelix.com" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+</div>
+
+<script>
+    function toggleMusic() {
+        var music = document.getElementById("bgMusic");
+        var btn = document.querySelector(".music-control");
+        if (music.paused) {
+            music.play();
+            btn.innerHTML = "⏸ Pause Music";
+        } else {
+            music.pause();
+            btn.innerHTML = "🎵 Play Our Song";
+        }
+    }
+</script>
+
+</body>
+</html>
